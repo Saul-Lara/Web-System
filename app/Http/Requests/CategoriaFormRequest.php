@@ -13,7 +13,7 @@ class CategoriaFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class CategoriaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required | max: 50',
+            'descripcion' => 'max: 250'
         ];
     }
 }
