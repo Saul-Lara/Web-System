@@ -29,7 +29,6 @@
   <body>
     <header class="header">   
       <nav class="navbar navbar-expand-lg">
-        @include('almacen.categoria.search')
         <div class="container-fluid d-flex align-items-center justify-content-between">
           <div class="navbar-header"><a href="index.html" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Ad</strong><strong>Ventas</strong></div>

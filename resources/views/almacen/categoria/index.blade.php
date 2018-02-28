@@ -3,7 +3,7 @@
 @section('titulo', 'Categorias')
 
 @section('contenido')<a href="categoria/create" class="add pull-right"><button class="btn btn-primary">Agregar</button></a>
-                    <li class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"> Buscar</i></a></li>
+                    @include('almacen.categoria.search')
                 
                     <div class="table-responsive"> 
                         <table class="table table-striped">

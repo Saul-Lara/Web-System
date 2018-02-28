@@ -1,13 +1,10 @@
-    <div class="search-panel">
-        <div class="search-inner d-flex align-items-center justify-content-center">
-            <div class="close-btn">Close <i class="fa fa-close"></i></div>
-
-            {{ Form::open(array('url' => 'almacen/categoria', 'method' => 'GET', 'autocomplete' => 'off', 'role' => 'search')) }}
-                <div class="form-group">
-                    <input type="text" name="searchText" placeholder="Buscar..." value="{{ $searchText }}">
-                    <button type="submit" class="submit">Buscar</button>
+            {!! Form::open(array('url' => 'almacen/categoria', 'method' => 'GET', 'autocomplete' => 'off', 'role' => 'search')) !!}
+            <div class="form-group pull-left">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="searchText" Placeholder="Categoria a buscar" value="{{ $searchText }}">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-primary"><i class="icon-magnifying-glass-browser"></i> Buscar...</button>
+                    </div>
                 </div>
-            {{ Form::close() }}
-
-        </div>
-    </div>
+            </div>
+            {!! Form::close() !!}

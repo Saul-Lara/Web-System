@@ -15,7 +15,6 @@ class CategoriaController extends Controller
     }
 
     public function index(Request $request){    //Muestra pagina inicial
-
         if($request){
             $query = trim($request->get('searchText')); // Trim : Elimina espacio en blanco del inicio y el final de la cadena
             $categorias = DB::table('categorias')->where('nombre','LIKE','%'.$query.'%')
@@ -27,8 +26,7 @@ class CategoriaController extends Controller
     }
     
     public function create(){
-
-        return view ('almacen.categoria.create');
+        return view('almacen.categoria.create');
     }
 
     public function store(CategoriaFormRequest $request ){    //Almacena los datos en la base de datos
