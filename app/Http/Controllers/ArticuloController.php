@@ -19,8 +19,9 @@ class ArticuloController extends Controller
         if($request){
             $query = trim($request->get('searchText')); // Trim : Elimina espacio en blanco del inicio y el final de la cadena
             $articulos = DB::table('articulos as a')->join('categorias as c', 'a.idcategoria', '=', 'c.idcategoria')
-                                                    ->select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'c.nombre as categoria', 'a.descripcion', 'a.imagen')
-                                                    ->where('nombre','LIKE','%'.$query.'%')
+                                                    ->select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'c.nombre as categoria', 'a.descripcion', 'a.imagen', 'a.estado')
+                                                    ->where('a.nombre','LIKE','%'.$query.'%')
+                                                    ->orwhere('a.codigo','LIKE','%'.$query.'%')
                                                     ->orderBy('a.idarticulo','desc')
                                                     ->paginate(7);
             return view('almacen.articulo.index',["articulos" => $articulos, "searchText" => $query ]);  //Vista y Parametros
