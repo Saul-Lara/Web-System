@@ -10,6 +10,7 @@
                   <div class="block-body">
                     {!! Form::model($categoria, ['method' => 'PATCH', 'route' => ['categoria.update', $categoria->idcategoria]]) !!}
                     {{ Form::token() }}
+                      <div class="form-group">
                         <label class="nombre">Nombre</label>
                         <input type="text" name="nombre" value="{{$categoria->nombre}}" placeholder="Nombre de la categoria" class="form-control">
                       </div>
