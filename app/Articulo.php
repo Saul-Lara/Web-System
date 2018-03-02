@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Articulo extends Model
 {
-    Protected $table = 'articulo';  //Nombre de la tabla que se va a utilizar
+    Protected $table = 'articulos';  //Nombre de la tabla que se va a utilizar
 
     Protected $primaryKey = 'idarticulo'; //Nombre de la llave primaria
 

@@ -29,28 +29,38 @@ class ArticuloController extends Controller
     }
     
     public function create(){
-        return view('almacen.categoria.create');
+        $categorias = DB::table('categorias')->where('condicion', '=', '1')->get();
+        return view('almacen.articulo.create', ["categorias" => $categorias ]);
     }
 
-    public function store(CategoriaFormRequest $request ){    //Almacena los datos en la base de datos
+    public function store(ArticuloFormRequest $request ){    //Almacena los datos en la base de datos
 
-        $categoria = new Categoria;
-        $categoria->nombre = $request->get('nombre');
-        $categoria->descripcion = $request->get('descripcion');
-        $categoria->condicion = '1';
-        $categoria->save();
+        $articulo = new Articulo;
+        $articulo->idcategoria = $request->get('idcategoria');
+        $articulo->codigo = $request->get('codigo');
+        $articulo->nombre = $request->get('nombre');
+        $articulo->stock = $request->get('stock');
+        $articulo->descripcion = $request->get('descripcion');
+        $articulo->estado = "Inactivo";
 
-        return Redirect::to('almacen/categoria');   //Redirecciona a la lista de categorias
+        if(Input::hasFile('imagen')){
+            $file = Input::file('imagen');
+            $file->move(public_path().'/imagenes/articulos/', $file->getClientOriginalName());
+            $articulo->imagen = $file->getClientOriginalName();
+        }
+        $articulo->save();
+
+        return Redirect::to('almacen/articulo');   //Redirecciona a la lista de categorias
     }
 
     public function show($id){  //Muestra informacion de un objeto
 
-        return view("almacen.categoria.show", ["categoria" => Categoria::findOrFail($id)]);
+        return view("almacen.articulo.show", ["categoria" => Categoria::findOrFail($id)]);
     }
 
     public function edit($id){ //Se llama a formulario para modificar los datos
 
-        return view("almacen.categoria.edit", ["categoria" => Categoria::findOrFail($id)]);
+        return view("almacen.articulo.edit", ["categoria" => Categoria::findOrFail($id)]);
     }
 
     public function update(CategoriaFormRequest $request, $id){
@@ -60,7 +70,7 @@ class ArticuloController extends Controller
         $categoria->descripcion = $request->get('descripcion');
         $categoria->update();
 
-        return Redirect::to("almacen/categoria");
+        return Redirect::to("almacen/articulo");
     }
 
     public function destroy($id){

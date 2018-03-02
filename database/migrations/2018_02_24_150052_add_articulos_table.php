@@ -19,7 +19,7 @@ class AddArticulosTable extends Migration
             $table->string('codigo', 50);
             $table->string('nombre', 100);
             $table->integer('stock');
-            $table->string('descripcion', 512);
+            $table->string('descripcion', 512)->nullable();
             $table->string('imagen', 50);
             $table->string('estado', 20);
 
