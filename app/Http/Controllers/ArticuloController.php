@@ -55,30 +55,42 @@ class ArticuloController extends Controller
 
     public function show($id){  //Muestra informacion de un objeto
 
-        return view("almacen.articulo.show", ["categoria" => Categoria::findOrFail($id)]);
+        return view("almacen.articulo.show", ["articulo" => Articulo::findOrFail($id)]);
     }
 
     public function edit($id){ //Se llama a formulario para modificar los datos
-
-        return view("almacen.articulo.edit", ["categoria" => Categoria::findOrFail($id)]);
+        $articulo = Articulo::findOrFail($id);
+        $categorias = DB::table('categorias')->where('condicion', '=', '1')->get();
+        return view("almacen.articulo.edit", ["articulo" => $articulo , "categorias" => $categorias]);
     }
 
-    public function update(CategoriaFormRequest $request, $id){
+    public function update(ArticuloFormRequest $request, $id){
 
-        $categoria = Categoria::findOrFail($id);
-        $categoria->nombre = $request->get('nombre');
-        $categoria->descripcion = $request->get('descripcion');
-        $categoria->update();
+        $articulo = Articulo::findOrFail($id);
+        $articulo->idcategoria = $request->get('idcategoria');
+        $articulo->codigo = $request->get('codigo');
+        $articulo->nombre = $request->get('nombre');
+        $articulo->stock = $request->get('stock');
+        $articulo->descripcion = $request->get('descripcion');
+        $articulo->estado = "Inactivo";
+
+        if(Input::hasFile('imagen')){
+            $file = Input::file('imagen');
+            $file->move(public_path().'/imagenes/articulos/', $file->getClientOriginalName());
+            $articulo->imagen = $file->getClientOriginalName();
+        }
+
+        $articulo->update();
 
         return Redirect::to("almacen/articulo");
     }
 
     public function destroy($id){
 
-        $categoria = Categoria::findOrFail($id);
-        $categoria->condicion = '0';
-        $categoria->update();
+        $articulo = Articulo::findOrFail($id);
+        $articulo->estado = "Inactivo";
+        $articulo->update();
 
-        return Redirect::to("almacen/categoria");
+        return Redirect::to("almacen/articulo");
     }
 }
