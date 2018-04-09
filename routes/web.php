@@ -22,3 +22,5 @@ Route::resource('almacen/articulo', 'ArticuloController'); //Se declara una ruta
 Route::resource('ventas/cliente', 'ClienteController'); //Se declara una ruta de recursos
 
 Route::resource('compras/proveedor', 'ProveedorController'); //Se declara una ruta de recursos
+
+Route::resource('compras/ingreso', 'IngresoController'); //Se declara una ruta de recursos
