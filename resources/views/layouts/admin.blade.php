@@ -9,6 +9,7 @@
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
     <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
     <!-- Font Awesome CSS-->
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
     <!-- Custom Font Icons CSS-->
@@ -141,5 +142,6 @@
     <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
     <script src="{{asset('js/charts-home.js')}}"></script>
     <script src="{{asset('js/front.js')}}"></script>
+    <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
   </body>
 </html>
