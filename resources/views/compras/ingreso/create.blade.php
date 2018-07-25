@@ -76,21 +76,21 @@
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Cantidad</label>
                             <div class="col-sm-9">
-                              <input id="inputHorizontalWarning pcantidad" name="pcantidad" type="number" class="form-control form-control-warning" placeholder="Cantidad...">
+                              <input id="pcantidad" name="pcantidad" type="number" class="form-control form-control-warning" placeholder="Cantidad...">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Precio compra</label>
                             <div class="col-sm-9">
-                              <input id="inputHorizontalWarning pprecio_compra" name="pprecio_compra" type="number" class="form-control form-control-warning" placeholder="Precio compra...">
+                              <input id="pprecio_compra" name="pprecio_compra" type="number" class="form-control form-control-warning" placeholder="Precio compra...">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Precio venta</label>
                             <div class="col-sm-9">
-                              <input id="inputHorizontalWarning pprecio_venta" name="pprecio_venta" type="number" class="form-control form-control-warning" placeholder="Precio venta...">
+                              <input id="pprecio_venta" name="pprecio_venta" type="number" class="form-control form-control-warning" placeholder="Precio venta...">
                             </div>
                           </div>
 
@@ -110,7 +110,7 @@
                 <div class="block">
                   <div class="title"><strong>Detalles</strong></div>
                   <div class="table-responsive"> 
-                    <table class="table table-striped table-hover">
+                    <table id="detalles" class="table table-striped table-sm">
                       <thead>
                         <tr>
                           <th>Opciones</th>
@@ -139,7 +139,7 @@
                 </div>
               </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12" id="guardar">
               <div class="block">
                 <div class="block-body">
                   <div class="form-group">
@@ -153,4 +153,65 @@
         </div>
 
         {!! Form::close() !!}
+@push('scripts')
+<script>
+  $(document).ready(function(){
+    $("#btn_add").click(function(){
+      agregar();
+    });
+  });
+
+  var cont = 0;
+  total = 0;
+  subtotal = [];
+  
+  $("#guardar").hide();
+
+  function agregar(){
+    idarticulo = $("#pidarticulo").val();
+    articulo = $("#pidarticulo option:selected").text();
+    cantidad = $("#pcantidad").val();
+    precio_compra = $("#pprecio_compra").val();
+    precio_venta = $("#pprecio_venta").val();
+
+    console.log(cantidad);
+
+    if(idarticulo != "" && cantidad != "" && cantidad > 0 && precio_compra != "" && precio_venta != ""){
+      subtotal[cont] = (cantidad * precio_compra);
+      total = total + subtotal[cont];
+
+      var fila = '<tr class = "selected" id = "fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick = "eliminar('+cont+');">Eliminar</button></td><td><input name="idarticulo[]" value="'+idarticulo+'" type="hidden">'+articulo+'</input></td><td><input name="cantidad[]" value="'+cantidad+'" type="number"></input></td><td><input name="precio_compra[]" value="'+precio_compra+'" type="number"></input></td><td><input name="precio_venta[]" value="'+precio_venta+'" type="number"></input></td><td>'+subtotal[cont]+'</td></tr>';
+
+      cont++;
+      limpiar();
+      $("#total").html("$ " + total);
+      evaluar();
+      $("#detalles").append(fila);
+    }else{
+      alert("Error al ingresar el detalle. Revisa los datos.");
+    }
+  }
+
+  function limpiar(){
+    $("#pcantidad").val("");
+    $("#pprecio_compra").val("");
+    $("#pprecio_venta").val("");
+  }
+
+  function evaluar(){
+    if(total > 0){
+      $("#guardar").show();
+    }else{
+      $("#guardar").hide();
+    }
+  }
+
+  function eliminar(index){
+    total = total - subtotal[index];
+    $("#total").html("$ " + total);
+    $("#fila"+ index).remove();
+    evaluar();
+  }
+</script>
+@endpush
 @endsection
