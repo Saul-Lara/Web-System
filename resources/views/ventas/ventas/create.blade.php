@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('titulo', 'Nuevo Ingreso')
+@section('titulo', 'Nueva venta')
 
 @section('contenido')
         <div class="row">
@@ -16,15 +16,15 @@
                 @endif
             </div>
         </div>
-        {!! Form::open(array('url' => 'compras/ingreso', 'method' => 'POST', 'autocomplete' => 'off')) !!}
+        {!! Form::open(array('url' => 'ventas/ventas', 'method' => 'POST', 'autocomplete' => 'off')) !!}
         {{ Form::token() }}
         <div class="row">
             <div class="col-lg-4">
                 <div class="block">
                   <div class="block-body">
                       <div class="form-group">
-                        <label for="proveedor">Proveedor</label>
-                        <select name="idproveedor" id="idproveedor" class="selectpicker form-control" data-live-search="true">
+                        <label for="cliente">Cliente</label>
+                        <select name="idcliente" id="idcliente" class="selectpicker form-control" data-live-search="true">
                           @foreach($personas as $persona)
                           <option value="{{$persona->idpersona}}">{{$persona->nombre}}</option>
                           @endforeach
@@ -67,7 +67,7 @@
                             <div class="col-sm-9">
                               <select name="pidarticulo" id="pidarticulo" class="selectpicker form-control" data-live-search="true">
                                 @foreach($articulos as $articulo)
-                                <option value="{{$articulo->idarticulo}}">{{$articulo->articulo}}</option>
+                                <option value="{{$articulo->idarticulo}}_{{$articulo->stock}}_{{$articulo->precio_promedio}}">{{$articulo->articulo}}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -76,21 +76,28 @@
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Cantidad</label>
                             <div class="col-sm-9">
-                              <input id="pcantidad" name="pcantidad" type="number" class="form-control form-control-warning" placeholder="Cantidad...">
+                              <input id="pcantidad" name="pcantidad" type="number" step=".01" class="form-control form-control-warning" placeholder="Cantidad...">
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-sm-3 form-control-label">Precio compra</label>
+                            <label class="col-sm-3 form-control-label">Stock</label>
                             <div class="col-sm-9">
-                              <input id="pprecio_compra" name="pprecio_compra" type="number" class="form-control form-control-warning" placeholder="Precio compra...">
+                              <input id="pstock" name="pstock" disabled type="number" class="form-control form-control-warning" placeholder="Cantidad...">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Precio venta</label>
                             <div class="col-sm-9">
-                              <input id="pprecio_venta" name="pprecio_venta" type="number" class="form-control form-control-warning" placeholder="Precio venta...">
+                              <input id="pprecio_venta" disabled name="pprecio_venta" type="number" class="form-control form-control-warning" placeholder="Precio venta...">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group row">
+                            <label class="col-sm-3 form-control-label">Descuento</label>
+                            <div class="col-sm-9">
+                              <input id="pdescuento" name="pdescuento" type="number" class="form-control form-control-warning" placeholder="Descuento...">
                             </div>
                           </div>
 
@@ -116,8 +123,8 @@
                           <th>Opciones</th>
                           <th>Articulo</th>
                           <th>Cantidad</th>
-                          <th>Precio Compra</th>
                           <th>Precio Venta</th>
+                          <th>Descuento</th>
                           <th>Subtotal</th>
                         </tr>
                       </thead>
@@ -128,7 +135,7 @@
                           <th></th>
                           <th></th>
                           <th></th>
-                          <th><h4 id="total">$ 0.00</h4></th>
+                          <th><h4 id="total">$ 0.00</h4><input type="hidden" id="total_venta" name="total_venta"></th>
                         </tr>
                       </tfoot>
                       <tbody>
@@ -166,6 +173,13 @@
   subtotal = [];
   
   $("#guardar").hide();
+  $("#pidarticulo").change(mostrarValores);
+
+  function mostrarValores(){
+    datosArticulo = document.getElementById('pidarticulo').value.split('_');
+    $("#pprecio_venta").val(datosArticulo[2]);
+    $("#pstock").val(datosArticulo[1]);
+  }
 
   function agregar(){
     idarticulo = $("#pidarticulo").val();
