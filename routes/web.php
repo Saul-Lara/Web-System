@@ -24,3 +24,5 @@ Route::resource('ventas/cliente', 'ClienteController'); //Se declara una ruta de
 Route::resource('compras/proveedor', 'ProveedorController'); //Se declara una ruta de recursos
 
 Route::resource('compras/ingreso', 'IngresoController'); //Se declara una ruta de recursos
+
+Route::resource('ventas/ventas', 'VentaController'); //Se declara una ruta de recursos
