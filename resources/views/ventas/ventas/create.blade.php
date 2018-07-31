@@ -76,7 +76,7 @@
                           <div class="form-group row">
                             <label class="col-sm-3 form-control-label">Cantidad</label>
                             <div class="col-sm-9">
-                              <input id="pcantidad" name="pcantidad" type="number" step=".01" class="form-control form-control-warning" placeholder="Cantidad...">
+                              <input id="pcantidad" name="pcantidad" type="number" class="form-control form-control-warning" placeholder="Cantidad...">
                             </div>
                           </div>
 
@@ -182,33 +182,44 @@
   }
 
   function agregar(){
-    idarticulo = $("#pidarticulo").val();
+    datosArticulo = document.getElementById('pidarticulo').value.split('_');
+
+    idarticulo = datosArticulo[0];
     articulo = $("#pidarticulo option:selected").text();
     cantidad = $("#pcantidad").val();
-    precio_compra = $("#pprecio_compra").val();
+    descuento = $("#pdescuento").val();
     precio_venta = $("#pprecio_venta").val();
+    stock = $("#pstock").val();
 
-    console.log(cantidad);
+    console.log(descuento);
 
-    if(idarticulo != "" && cantidad != "" && cantidad > 0 && precio_compra != "" && precio_venta != ""){
-      subtotal[cont] = (cantidad * precio_compra);
-      total = total + subtotal[cont];
+    if(idarticulo != "" && cantidad != "" && cantidad > 0 && descuento != "" && precio_venta != ""){
 
-      var fila = '<tr class = "selected" id = "fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick = "eliminar('+cont+');">Eliminar</button></td><td><input name="idarticulo[]" value="'+idarticulo+'" type="hidden">'+articulo+'</input></td><td><input name="cantidad[]" value="'+cantidad+'" type="number"></input></td><td><input name="precio_compra[]" value="'+precio_compra+'" type="number"></input></td><td><input name="precio_venta[]" value="'+precio_venta+'" type="number"></input></td><td>'+subtotal[cont]+'</td></tr>';
+      if(stock >= cantidad){
+        subtotal[cont] = (cantidad * (precio_venta - descuento));
+        total = total + subtotal[cont];
 
-      cont++;
-      limpiar();
-      $("#total").html("$ " + total);
-      evaluar();
-      $("#detalles").append(fila);
+        var fila = '<tr class = "selected" id = "fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick = "eliminar('+cont+');">Eliminar</button></td><td><input name="idarticulo[]" value="'+idarticulo+'" type="hidden">'+articulo+'</input></td><td><input name="cantidad[]" value="'+cantidad+'" type="number"></input></td><td><input name="precio_venta[]" value="'+precio_venta+'" type="number"></input></td><td><input name="descuento[]" value="'+descuento+'" type="number"></input></td><td>'+subtotal[cont]+'</td></tr>';
+
+        cont++;
+        limpiar();
+        $("#total").html("$ " + total);
+        $("#total_venta").val(total);
+        evaluar();
+        $("#detalles").append(fila);
+      }else{
+        alert("La cantidad supera el stock.");
+      }
+      
     }else{
-      alert("Error al ingresar el detalle. Revisa los datos.");
+      alert("Error al ingresar la venta. Revisa los datos.");
     }
   }
 
   function limpiar(){
     $("#pcantidad").val("");
-    $("#pprecio_compra").val("");
+    $("#pdescuento").val("");
+    $("#pstock").val("");
     $("#pprecio_venta").val("");
   }
 
@@ -223,6 +234,7 @@
   function eliminar(index){
     total = total - subtotal[index];
     $("#total").html("$ " + total);
+    $("#total_venta").val(total);
     $("#fila"+ index).remove();
     evaluar();
   }

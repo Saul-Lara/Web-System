@@ -24,7 +24,7 @@
                             <tbody>
                             @foreach($ventas as $ven)
                                 <tr>
-                                    <td>{{ $ven->idingreso }}</td>
+                                    <td>{{ $ven->idventa }}</td>
                                     <td>{{ $ven->fecha_hora }}</td>
                                     <td>{{ $ven->nombre }}</td>
                                     <td>{{ $ven->tipo_comprobante }}</td>
@@ -34,8 +34,8 @@
                                     <td>{{ $ven->total_venta }}</td>
                                     <td>{{ $ven->estado }}</td>
                                     <td>
-                                        <a href="{{URL::action('VentaController@show', $ven->idingreso )}}"><button class="btn btn-primary">Detalles</button></a>
-                                        <a href="" data-target="#modal-delete-{{$ven->idingreso}}" data-toggle="modal"><button class="btn btn-danger">Anular</button></a>
+                                        <a href="{{URL::action('VentaController@show', $ven->idventa )}}"><button class="btn btn-primary">Detalles</button></a>
+                                        <a href="" data-target="#modal-delete-{{$ven->idventa}}" data-toggle="modal"><button class="btn btn-danger">Anular</button></a>
                                     </td>
                                 </tr>
                                 

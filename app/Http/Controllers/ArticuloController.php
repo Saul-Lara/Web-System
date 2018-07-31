@@ -41,7 +41,7 @@ class ArticuloController extends Controller
         $articulo->nombre = $request->get('nombre');
         $articulo->stock = $request->get('stock');
         $articulo->descripcion = $request->get('descripcion');
-        $articulo->estado = "Inactivo";
+        $articulo->estado = "Activo";
 
         if(Input::hasFile('imagen')){
             $file = Input::file('imagen');
@@ -72,7 +72,6 @@ class ArticuloController extends Controller
         $articulo->nombre = $request->get('nombre');
         $articulo->stock = $request->get('stock');
         $articulo->descripcion = $request->get('descripcion');
-        $articulo->estado = "Inactivo";
 
         if(Input::hasFile('imagen')){
             $file = Input::file('imagen');

@@ -28,7 +28,7 @@ class VentaController extends Controller
                                                   ->select('v.idventa','v.fecha_hora','p.nombre','v.tipo_comprobante','v.serie_comprobante','v.num_comprobante','v.impuesto','v.estado','v.total_venta')
                                                   ->where('v.num_comprobante','LIKE','%'.$query.'%')
                                                   ->orderBy('v.idventa','desc')
-                                                  ->groupBy('v.idventa','v.fecha_hora','p.nombre','v.tipo_comprobante','v.serie_comprobante','v.num_comprobante','v.impuesto','v.estado')
+                                                  ->groupBy('v.idventa','v.fecha_hora','p.nombre','v.tipo_comprobante','v.serie_comprobante','v.num_comprobante','v.impuesto','v.estado','v.total_venta')
                                                   ->paginate(7);
             return view('ventas.ventas.index',["ventas" => $ventas, "searchText" => $query ]);  //Vista y Parametros
         }
@@ -49,7 +49,7 @@ class VentaController extends Controller
         try{
             DB::beginTransaction();
 
-            $venta = new Vemta;
+            $venta = new Venta;
             $venta->idcliente = $request->get('idcliente');
             $venta->tipo_comprobante = $request->get('tipo_comprobante');
             $venta->serie_comprobante = $request->get('serie_comprobante');
@@ -96,7 +96,7 @@ class VentaController extends Controller
                                              ->join('detalles-venta as dv' , 'v.idventa', '=' , 'dv.idventa')
                                              ->select('v.idventa','v.fecha_hora','p.nombre','v.tipo_comprobante','v.serie_comprobante','v.num_comprobante','v.impuesto','v.estado', 'v.total_venta')
                                              ->where('v.idventa','=', $id)
-                                             ->groupBy('i.idingreso','i.fecha_hora','p.nombre','i.tipo_comprobante','i.serie_comprobante','i.num_comprobante','i.impuesto','i.estado')
+                                             ->groupBy('v.idventa','v.fecha_hora','p.nombre','v.tipo_comprobante','v.serie_comprobante','v.num_comprobante','v.impuesto','v.estado', 'v.total_venta')
                                              ->first();
 
         $detalles = DB::table('detalles-venta as d')->join('articulos as a', 'd.idarticulo','=','a.idarticulo')
