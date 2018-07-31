@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::resource('almacen/categoria', 'CategoriaController'); //Se declara una ruta de recursos
@@ -26,3 +26,7 @@ Route::resource('compras/proveedor', 'ProveedorController'); //Se declara una ru
 Route::resource('compras/ingreso', 'IngresoController'); //Se declara una ruta de recursos
 
 Route::resource('ventas/ventas', 'VentaController'); //Se declara una ruta de recursos
+
+Auth::routes();
+
+Route::get('/logout','Auth\LoginController@logout');

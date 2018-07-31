@@ -3,7 +3,7 @@
   <head> 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin by Bootstrapious.com</title>
+    <title>AdVentas</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -37,7 +37,7 @@
             <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
           </div>
           <ul class="right-menu list-inline no-margin-bottom">
-            <li class="list-inline-item logout"><a id="logout" href="login.html" class="nav-link">Logout <i class="icon-logout"></i></a></li>
+            <li class="list-inline-item logout"><a id="logout" href="{{route('logout')}}" class="nav-link">Logout <i class="icon-logout"></i></a></li>
           </ul>
         </div>
       </nav>
