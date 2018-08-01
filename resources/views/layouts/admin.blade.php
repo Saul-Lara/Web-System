@@ -48,9 +48,9 @@
       <nav id="sidebar">
         <!-- Sidebar Header-->
         <div class="sidebar-header d-flex align-items-center">
-          <div class="avatar"><img src="img/avatar-6.jpg" alt="..." class="img-fluid rounded-circle"></div>
+          <div class="avatar"><img src="{{asset('img/avatar.jpg')}}" alt="..." class="img-fluid rounded-circle"></div>
           <div class="title">
-            <h1 class="h5">Juan Carlos Arcila Díaz</h1>
+            <h1 class="h5">{{Auth::user()->name}}</h1>
           </div>
         </div>
         <!-- Sidebar Navidation Menus-->
@@ -60,28 +60,28 @@
 
           <li><a href="#Almacen" aria-expanded="false" data-toggle="collapse"> <i class="icon-computer"></i>Almacen </a>
             <ul id="Almacen" class="collapse list-unstyled ">
-              <li><a href="almacen/articulo">Articulos</a></li>
-              <li><a href="almacen/categoria">Categorias</a></li>
+              <li><a href="{{ url('almacen/articulo') }}">Articulos</a></li>
+              <li><a href="{{ url('almacen/categoria') }}">Categorias</a></li>
             </ul>
           </li>
 
           <li><a href="#Compras" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>Compras </a>
             <ul id="Compras" class="collapse list-unstyled ">
-              <li><a href="compras/ingreso">Ingresos</a></li>
-              <li><a href="compras/proveedor">Proveedores</a></li>
+              <li><a href="{{ url('compras/ingreso') }}">Ingresos</a></li>
+              <li><a href="{{ url('compras/proveedor') }}">Proveedores</a></li>
             </ul>
           </li>
 
           <li><a href="#Ventas" aria-expanded="false" data-toggle="collapse"> <i class="icon-bill"></i>Ventas </a>
             <ul id="Ventas" class="collapse list-unstyled ">
-              <li><a href="ventas/venta">Ventas</a></li>
-              <li><a href="ventas/cliente">Clientes</a></li>
+              <li><a href="{{ url('ventas/ventas') }}">Ventas</a></li>
+              <li><a href="{{ url('ventas/cliente') }}">Clientes</a></li>
             </ul>
           </li>
 
           <li><a href="#Acceso" aria-expanded="false" data-toggle="collapse"> <i class="icon-user-outline"></i>Acceso </a>
             <ul id="Acceso" class="collapse list-unstyled ">
-              <li><a href="configuracion/usuario">Usuarios</a></li>
+              <li><a href="{{ url('acceso/usuarios') }}">Usuarios</a></li>
             </ul>
           </li>
 
