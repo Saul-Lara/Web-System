@@ -30,3 +30,5 @@ Route::resource('ventas/ventas', 'VentaController'); //Se declara una ruta de re
 Auth::routes();
 
 Route::get('/logout','Auth\LoginController@logout');
+
+Route::resource('acceso/usuarios', 'UsuarioController'); //Se declara una ruta de recursos
