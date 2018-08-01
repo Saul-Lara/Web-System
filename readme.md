@@ -1,7 +1,7 @@
 # Web System
 Este es un Sistema que permite el control del Inventario y las Ventas.
 
-### Pre-requisitos 📋
+## Construido con 🛠️
 
 ```
 Laravel 5.6
