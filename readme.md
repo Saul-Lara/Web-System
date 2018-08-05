@@ -1,7 +1,7 @@
 # Web System
-Este es un Sistema que permite el control del Inventario y las Ventas.
+This is a system that allows the control of inventory and sales.
 
-## Construido con 🛠️
+## Built With 🛠️
 
 ```
 Laravel 5.6
