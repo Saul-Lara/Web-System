@@ -14,9 +14,9 @@
     <meta name="description" content="">
     <meta name="robots" content="all,follow">
     <!-- Bootstrap CSS-->
-    <link rel="stylesheet" href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
     <!-- Custom Font Icons CSS-->
     <link rel="stylesheet" href="{{asset('css/font.css')}}">
     <!-- Google fonts - Muli-->
@@ -37,8 +37,8 @@
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"> </script>
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('vendor/jquery.cookie/jquery.cookie.js')}}"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"> </script>
     <script src="{{asset('js/front.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
