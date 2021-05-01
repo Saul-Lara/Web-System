@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
     <!-- Font Awesome CSS-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- Custom Font Icons CSS-->
     <link rel="stylesheet" href="{{asset('css/font.css')}}">
     <!-- Google fonts - Muli-->
@@ -34,7 +34,7 @@
           <div class="navbar-header"><a href="index.html" class="navbar-brand">
               <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">Ad</strong><strong>Ventas</strong></div>
               <div class="brand-text brand-sm"><strong class="text-primary">AD</strong><strong>V</strong></div></a>
-            <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+            <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
           </div>
           <ul class="right-menu list-inline no-margin-bottom">
             <li class="list-inline-item logout"><a id="logout" href="{{route('logout')}}" class="nav-link">Logout <i class="icon-logout"></i></a></li>
@@ -72,7 +72,7 @@
             </ul>
           </li>
 
-          <li><a href="#Ventas" aria-expanded="false" data-toggle="collapse"> <i class="icon-bill"></i>Ventas </a>
+          <li><a href="#Ventas" aria-expanded="false" data-toggle="collapse"> <i class="fas fa-money-bill-wave"></i>Ventas </a>
             <ul id="Ventas" class="collapse list-unstyled ">
               <li><a href="{{ url('ventas/ventas') }}">Ventas</a></li>
               <li><a href="{{ url('ventas/cliente') }}">Clientes</a></li>
@@ -85,9 +85,9 @@
             </ul>
           </li>
 
-          <li><a href="#"> <i class="icon-page"></i>Ayuda </a></li>
+          <li><a href="#"> <i class="fas fa-question-circle"></i>Ayuda </a></li>
 
-          <li><a href="#"> <i class="icon-page"></i>Acerca de... </a></li>
+          <li><a href="#"> <i class="fas fa-file-alt"></i>Acerca de... </a></li>
         </ul>
       </nav>
       <!-- Sidebar Navigation end-->
